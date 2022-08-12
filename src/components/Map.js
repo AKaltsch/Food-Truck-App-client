@@ -1,12 +1,30 @@
 import React, { useState, useCallback, useRef } from "react";
 import MapStyles from "../MapStyles";
 import { formatRelative } from "date-fns";
+
+import Search from "./map-components/Search";
+
 import {
   GoogleMap,
   useJsApiLoader,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+
+// import usePlacesAutocomplete, {
+//   getGeocode,
+//   getLatLng,
+// } from "use-places-autocomplete";
+
+// import {
+//   Combobox,
+//   ComboboxInput,
+//   ComboboxPopover,
+//   ComboboxList,
+//   ComboboxOption,
+// } from "@reach/combobox";
+
+// import "@reach/combobox/styles.css";
 
 const mapContainerStyle = {
   width: "100vw",
@@ -72,6 +90,8 @@ function Map() {
   }
   return (
     <div>
+      <Search />
+
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
