@@ -3,6 +3,7 @@ import MapStyles from "../MapStyles";
 import { formatRelative } from "date-fns";
 
 import Search from "./map-components/Search";
+import Locate from "./map-components/Locate";
 
 import {
   GoogleMap,
@@ -23,6 +24,7 @@ const center = {
 
 const options = {
   styles: MapStyles,
+  disableDefaultUI: true,
 };
 
 ////////////////////// function start ///////////////////
@@ -82,6 +84,7 @@ function Map() {
   return (
     <div>
       <Search panTo={panTo} />
+      <Locate panTo={panTo} />
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}

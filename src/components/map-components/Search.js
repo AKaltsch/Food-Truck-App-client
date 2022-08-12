@@ -57,10 +57,12 @@ function Search({ panTo }) {
           placeholder="Enter an Address"
         />
         <ComboboxPopover>
-          {status === "OK" &&
-            data.map(({ id, description }) => (
-              <ComboboxOption key={id} value={description} />
-            ))}
+          <ComboboxList>
+            {status === "OK" &&
+              data.map(({ id, description }) => (
+                <ComboboxOption key={id} value={description} />
+              ))}
+          </ComboboxList>
         </ComboboxPopover>
       </Combobox>
     </div>

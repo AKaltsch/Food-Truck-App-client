@@ -22,3 +22,24 @@ code {
   max-width: 400px;
   z-index: 10;
 }
+
+.search input {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  width: 70%;
+  color: white;
+  background-color: darkblue;
+}
+
+.locate {
+  position: absolute;
+  top: 6rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  z-index: 10;
+}
+.locate img {
+  width: 50px;
+  cursor: pointer;
+}
