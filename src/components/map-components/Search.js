@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -15,7 +15,7 @@ import {
 
 import "@reach/combobox/styles.css";
 
-function Search() {
+function Search({ panTo }) {
   const {
     ready,
     value,
@@ -35,8 +35,17 @@ function Search() {
   return (
     <div className="search">
       <Combobox
-        onSelect={(address) => {
-          console.log(address);
+        onSelect={async (address) => {
+          setValue(address, false);
+          clearSuggestions();
+          try {
+            const result = await getGeocode({ address });
+            const { lat, lng } = getLatLng(result[0]);
+            console.log(lat, lng);
+            return panTo({ lat, lng });
+          } catch (err) {
+            console.log(err);
+          }
         }}
       >
         <ComboboxInput

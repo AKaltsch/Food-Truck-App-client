@@ -11,21 +11,6 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-// import usePlacesAutocomplete, {
-//   getGeocode,
-//   getLatLng,
-// } from "use-places-autocomplete";
-
-// import {
-//   Combobox,
-//   ComboboxInput,
-//   ComboboxPopover,
-//   ComboboxList,
-//   ComboboxOption,
-// } from "@reach/combobox";
-
-// import "@reach/combobox/styles.css";
-
 const mapContainerStyle = {
   width: "100vw",
   height: "90vh",
@@ -54,13 +39,16 @@ function Map() {
   });
   const [map, setMap] = useState(null);
 
+  const mapRef = useRef();
+
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
     setMap(map);
+    mapRef.current = map;
   }, []);
 
-  ////same as onLoad function ---> Look into diffference btwn the 2!!!!!!!
-  // const onMapLoad = useCallback((map) => {
+  ////same as onLoad function above ---> Look into diffference btwn the 2!!!!!!!
+  // const onLoad = useCallback((map) => {
   //   mapRef.current = map;
   // }, []);
 
@@ -79,7 +67,10 @@ function Map() {
     ]);
   }, []);
 
-  const mapRef = useRef();
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(13);
+  }, []);
 
   if (loadError) {
     return "Error loading maps";
@@ -90,7 +81,7 @@ function Map() {
   }
   return (
     <div>
-      <Search />
+      <Search panTo={panTo} />
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
