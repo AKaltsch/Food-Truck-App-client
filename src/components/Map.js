@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   GoogleMap,
-  useLoadScript,
+  useJsApiLoader,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-
-const libraries = ["places"];
 
 const mapContainerStyle = {
   width: "100vw",
@@ -18,24 +16,18 @@ const center = {
   lng: -122.469244,
 };
 
+//////////////////////
 function Map() {
-  const { isLoaded, loadError } = useLoadScript({
+  const [libraries] = useState(["places"]);
+
+  const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const [map, setMap] = React.useState(null);
-
-  // if (loadError) {
-  //   return "Error loading maps";
-  // }
-
-  // if (!isLoaded) {
-  //   return "Loading Maps...";
-  // }
+  const [map, setMap] = useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -43,12 +35,19 @@ function Map() {
     setMap(null);
   }, []);
 
+  if (loadError) {
+    return "Error loading maps";
+  }
+
+  if (!isLoaded) {
+    return "Loading Maps...";
+  }
   return (
     <div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
-        zoom={10}
+        zoom={11}
         onLoad={onLoad}
         onUnmount={onUnmount}
       ></GoogleMap>
