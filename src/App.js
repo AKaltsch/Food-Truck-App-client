@@ -1,11 +1,17 @@
 import "./App.css";
-import Map from "./components/Map";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import MyPlaces from "./components/MyPlaces";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <h1>App</h1>
-      <Map />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/myplaces" element={<MyPlaces />} />
+      </Routes>
     </div>
   );
 }
