@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
-import MapStyles from "../MapStyles";
+import MapStyles from "./map-components/MapStyles";
 import { formatRelative } from "date-fns";
 
 import Search from "./map-components/Search";
