@@ -49,7 +49,7 @@ function Map() {
     mapRef.current = map;
   }, []);
 
-  ////same as onLoad function above ---> Look into diffference btwn the 2!!!!!!!
+  // //same as onLoad function above ---> Look into diffference btwn the 2!!!!!!!
   // const onLoad = useCallback((map) => {
   //   mapRef.current = map;
   // }, []);
