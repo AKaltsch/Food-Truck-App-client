@@ -15,7 +15,7 @@ code {
 
 .search {
   position: absolute;
-  top: 6rem;
+  top: 7rem;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -28,12 +28,12 @@ code {
   font-size: 1.5rem;
   width: 70%;
   color: white;
-  background-color: darkblue;
+  background-color: #0b434f;
 }
 
 .locate {
   position: absolute;
-  top: 6rem;
+  top: 7rem;
   right: 2rem;
   background: none;
   border: none;
@@ -42,4 +42,8 @@ code {
 .locate img {
   width: 50px;
   cursor: pointer;
+}
+
+a {
+  color: white
 }

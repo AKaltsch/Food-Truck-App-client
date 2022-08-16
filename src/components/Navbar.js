@@ -7,26 +7,37 @@ import MyPlaces from "./auth-components/MyPlaces";
 import PlaceRoutes from "./place-components/PlaceRoutes";
 import NotFound from "./NotFound";
 
-import "../styles.css";
+import "../navbar.css";
 
 function Navbar() {
   //state on not found page
   //useLocation is the only way to get state out of links
   const location = useLocation();
   return (
-    <>
-      <nav>
-        <NavLink to="/" className="siteTitle">
-          Food Truck Finder
-        </NavLink>
-        <ul>
-          <NavLink to="/myplaces">My Places</NavLink>
-          <NavLink to="/places">Places</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/signup">Signup</NavLink>
-        </ul>
-      </nav>
-      {location.state}
+    <div>
+      <header>
+        <nav>
+          <ul className="nav__links">
+            <li>
+              <NavLink to="/">Food Truck Finder</NavLink>
+            </li>
+            <li>
+              <NavLink to="/myplaces">My Places</NavLink>
+            </li>
+            <li>
+              <NavLink to="/places">Places</NavLink>
+            </li>
+            <li>
+              <button>
+                <NavLink className="cta" to="/login">
+                  Login
+                </NavLink>
+              </button>
+            </li>
+          </ul>
+        </nav>
+        {location.state}
+      </header>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -41,7 +52,7 @@ function Navbar() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
