@@ -18,20 +18,18 @@ function Signup() {
         <div className="form-control">
           <label>E-Mail</label>
           <input
-            className=""
-            type="email"
-            name="email"
-            id="email"
+            type="new-email"
+            name="new-email"
+            id="new-email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-control">
           <label>Password</label>
           <input
-            className=""
-            type="password"
-            name="password"
-            id="password"
+            type="new-password"
+            name="new-password"
+            id="new-password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>

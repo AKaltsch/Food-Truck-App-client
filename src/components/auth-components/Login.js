@@ -19,10 +19,9 @@ function Login() {
         <div className="form-control">
           <label>E-Mail</label>
           <input
-            className=""
-            type="email"
-            name="email"
-            id="email"
+            type="user-email"
+            name="user-email"
+            id="user-email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -30,15 +29,15 @@ function Login() {
         <div className="form-control">
           <label>Password</label>
           <input
-            className=""
-            type="password"
-            name="password"
-            id="password"
+            type="user-password"
+            name="user-password"
+            id="user-password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
       </form>
       <button onClick={submitUser}>Submit</button>
+      <br />
       <br />
       <NavLink to="/signup">Create an Account</NavLink>
     </div>
