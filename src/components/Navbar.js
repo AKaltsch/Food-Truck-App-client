@@ -18,8 +18,9 @@ function Navbar() {
       <header>
         <nav>
           <ul className="nav__links">
+            <span>🚚</span>
             <li>
-              <NavLink to="/">Food Truck Finder</NavLink>
+              <NavLink to="/">Map</NavLink>
             </li>
             <li>
               <NavLink to="/myplaces">My Places</NavLink>
