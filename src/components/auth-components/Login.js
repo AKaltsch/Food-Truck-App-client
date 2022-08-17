@@ -7,6 +7,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const submitUser = () => {
+    console.log(`email: ${email}`);
+    console.log(`password: ${password}`);
+  };
+
   return (
     <div>
       <h1>Login</h1>
@@ -33,6 +38,8 @@ function Login() {
           />
         </div>
       </form>
+      <button onClick={submitUser}>Submit</button>
+      <br />
       <NavLink to="/signup">Create an Account</NavLink>
     </div>
   );
