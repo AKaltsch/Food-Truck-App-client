@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import axios from "axios";
+
 import "../../form-styles.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitUser = () => {
-    console.log(`email: ${email}`);
-    console.log(`password: ${password}`);
+  const postLogin = () => {
+    axios.post("http://localhost:4000/login", {
+      email: email,
+      password: password,
+    });
   };
 
   return (
@@ -36,7 +40,7 @@ function Login() {
           />
         </div>
       </form>
-      <button onClick={submitUser}>Submit</button>
+      <button onClick={postLogin}>Submit</button>
       <br />
       <br />
       <NavLink to="/signup">Create an Account</NavLink>
