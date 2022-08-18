@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import "../../form-styles.css";
 
@@ -7,8 +8,10 @@ function Signup() {
   const [password, setPassword] = useState("");
 
   const submitUser = () => {
-    console.log(`email: ${email}`);
-    console.log(`password: ${password}`);
+    axios.post("http://localhost:4000/signup", {
+      email: email,
+      password: password,
+    });
   };
 
   return (
