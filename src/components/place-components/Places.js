@@ -9,4 +9,3 @@ function Places() {
 }
 
 export default Places;
-<h1>Places</h1>;

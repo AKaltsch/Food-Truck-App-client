@@ -18,7 +18,9 @@ function Navbar() {
       <header>
         <nav>
           <ul className="nav__links">
-            <span>🚚</span>
+            <span role="img" aria-label="emoji">
+              🚚
+            </span>
             <li>
               <NavLink to="/">Map</NavLink>
             </li>
