@@ -6,11 +6,20 @@ import Navbar from "./components/Navbar";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
+  // const getLogin = axios.get("http://localhost:4000/login").then((res) => {
+  //   console.log(res);
+  // });
+
   useEffect(() => {
-    const token = localStorage;
-    // console.log(token);
-    axios.get("http://localhost:4000/login").then((res) => {
-      console.log(res);
+    const token = localStorage.getItem("jwt");
+
+    fetch("http://localhost:4000/login").then((res) => {
+      if (res.ok) {
+        console.log("SUCCESS!!!");
+        console.log(res);
+      } else {
+        console.log("unsuccessful");
+      }
     });
   }, []);
 
