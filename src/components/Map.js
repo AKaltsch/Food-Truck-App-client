@@ -43,16 +43,16 @@ function Map() {
 
   const mapRef = useRef();
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    setMap(map);
-    mapRef.current = map;
-  }, []);
-
-  // //same as onLoad function above ---> Look into diffference btwn the 2!!!!!!!
-  // const onLoad = useCallback((map) => {
+  // const onLoad = useCallback(function callback(map) {
+  //   const bounds = new window.google.maps.LatLngBounds(center);
+  //   setMap(map);
   //   mapRef.current = map;
   // }, []);
+
+  // //same as onLoad function above ---> Look into diffference btwn the 2!!!!!!!
+  const onLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);

@@ -8,10 +8,14 @@ function Signup() {
   const [password, setPassword] = useState("");
 
   const submitUser = () => {
-    axios.post("http://localhost:4000/signup", {
-      email: email,
-      password: password,
-    });
+    axios
+      .post("http://localhost:4000/signup", {
+        email: email,
+        password: password,
+      })
+      .then((result) => {
+        result.redirect("/login");
+      });
   };
 
   return (

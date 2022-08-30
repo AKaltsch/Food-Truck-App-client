@@ -8,12 +8,24 @@ import "../../form-styles.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const postLogin = () => {
-    axios.post("http://localhost:4000/login", {
-      email: email,
-      password: password,
-    });
+    axios
+      .post("http://localhost:4000/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        if (!response.data.message) {
+          console.log("failed to login!");
+          setLoggedIn(false);
+        } else {
+          console.log("login successful!!");
+          console.log(response.data);
+          setLoggedIn(true);
+        }
+      });
   };
 
   return (
