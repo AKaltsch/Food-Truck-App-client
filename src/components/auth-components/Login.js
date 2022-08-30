@@ -17,14 +17,26 @@ function Login() {
         password: password,
       })
       .then((response) => {
-        if (!response.data.message) {
+        if (!response.data.auth) {
           console.log("failed to login!");
           setLoggedIn(false);
         } else {
           console.log("login successful!!");
-          console.log(response.data);
+          localStorage.setItem("token", response.data.token);
           setLoggedIn(true);
         }
+      });
+  };
+
+  const isAuthenticated = () => {
+    axios
+      .get("http://localhost:4000/isUserAuth", {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        console.log(res);
       });
   };
 
@@ -56,6 +68,10 @@ function Login() {
       <br />
       <br />
       <NavLink to="/signup">Create an Account</NavLink>
+
+      {loggedIn && (
+        <button onClick={isAuthenticated}>Check Authentication</button>
+      )}
     </div>
   );
 }
