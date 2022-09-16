@@ -1,18 +1,27 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function PlaceForm() {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [artistName, setArtistName] = useState("");
 
-  const handleSubmit = () => {
-    console.log("Title:" + title);
+  const submitPlace = () => {
+    axios
+      .post("http://localhost:4000/placeform", {
+        title: title,
+        imageUrl: imageUrl,
+        artistName: artistName,
+      })
+      .then((result) => {
+        result.redirect("/");
+      });
   };
 
   return (
     <div>
       <h1>PlaceForm</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="form-control">
           <label>Title</label>
           <input
@@ -40,7 +49,9 @@ function PlaceForm() {
             onChange={(e) => setArtistName(e.target.value)}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={submitPlace}>
+          Submit
+        </button>
       </form>
     </div>
   );
