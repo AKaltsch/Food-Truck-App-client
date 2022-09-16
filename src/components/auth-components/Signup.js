@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "../../form-styles.css";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,7 +17,7 @@ function Signup() {
         password: password,
       })
       .then((result) => {
-        result.redirect("/login");
+        navigate("/login");
       });
   };
 
