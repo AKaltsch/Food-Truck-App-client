@@ -51,6 +51,7 @@ function Map() {
 
   // //same as onLoad function above ---> Look into diffference btwn the 2!!!!!!!
   const onLoad = useCallback((map) => {
+    console.log("loaded");
     mapRef.current = map;
   }, []);
 
@@ -108,6 +109,7 @@ function Map() {
 
         {selected ? (
           <InfoWindow
+            options={{ pixelOffset: new window.google.maps.Size(0, -30) }}
             position={{ lat: selected.lat, lng: selected.lng }}
             onCloseClick={() => setSelected(null)}
           >
