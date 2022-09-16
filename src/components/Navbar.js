@@ -8,6 +8,7 @@ import PlaceRoutes from "./place-components/PlaceRoutes";
 import NotFound from "./NotFound";
 
 import "../navbar.css";
+import PlaceForm from "./place-components/PlaceForm";
 
 function Navbar() {
   //state on not found page
@@ -23,6 +24,9 @@ function Navbar() {
             </span>
             <li>
               <NavLink to="/">Map</NavLink>
+            </li>
+            <li>
+              <NavLink to="/placeform">Place Form</NavLink>
             </li>
             <li>
               <NavLink to="/myplaces">My Places</NavLink>
@@ -49,6 +53,7 @@ function Navbar() {
         <Route path="/places/*" element={<PlaceRoutes />} />
 
         <Route path="/myplaces" element={<MyPlaces />} />
+        <Route path="/placeform" element={<PlaceForm />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
