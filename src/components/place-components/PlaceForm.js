@@ -14,7 +14,7 @@ function PlaceForm() {
         artistName: artistName,
       })
       .then((result) => {
-        result.redirect("/");
+        result.redirect("/places");
       });
   };
 
