@@ -8,8 +8,6 @@ import PlaceRoutes from "./place-components/PlaceRoutes";
 import NotFound from "./NotFound";
 
 import "../navbar.css";
-import PlaceForm from "./place-components/PlaceForm";
-import axios from "axios";
 
 function Navbar() {
   //state on not found page
@@ -32,14 +30,13 @@ function Navbar() {
               <NavLink to="/">Map</NavLink>
             </li>
             <li>
-              <NavLink to="/placeform">Place Form</NavLink>
-            </li>
-            <li>
               <NavLink to="/places">Places</NavLink>
             </li>
-            <li>
-              <NavLink to="/myplaces">My Places</NavLink>
-            </li>
+            {localStorage.token ? (
+              <li>
+                <NavLink to="/myplaces">My Places</NavLink>
+              </li>
+            ) : null}
             <li>
               {!localStorage.token ? (
                 <button>
@@ -67,7 +64,6 @@ function Navbar() {
         <Route path="/places/*" element={<PlaceRoutes />} />
 
         <Route path="/myplaces" element={<MyPlaces />} />
-        <Route path="/placeform" element={<PlaceForm />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

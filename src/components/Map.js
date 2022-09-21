@@ -11,6 +11,7 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+import PlaceForm from "./place-components/PlaceForm";
 
 const mapContainerStyle = {
   width: "100vw",
@@ -113,10 +114,11 @@ function Map() {
             position={{ lat: selected.lat, lng: selected.lng }}
             onCloseClick={() => setSelected(null)}
           >
-            <div>
+            {/* <div>
               <h2>testing infobox</h2>
               <p>{formatRelative(selected.time, new Date())}</p>
-            </div>
+            </div> */}
+            <PlaceForm />
           </InfoWindow>
         ) : null}
       </GoogleMap>
