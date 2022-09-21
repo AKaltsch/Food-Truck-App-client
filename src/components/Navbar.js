@@ -29,17 +29,23 @@ function Navbar() {
               <NavLink to="/placeform">Place Form</NavLink>
             </li>
             <li>
-              <NavLink to="/myplaces">My Places</NavLink>
-            </li>
-            <li>
               <NavLink to="/places">Places</NavLink>
             </li>
             <li>
-              <button>
-                <NavLink className="cta" to="/login">
-                  Login
-                </NavLink>
-              </button>
+              <NavLink to="/myplaces">My Places</NavLink>
+            </li>
+            <li>
+              {!localStorage.token ? (
+                <button>
+                  <NavLink className="cta" to="/login">
+                    Login
+                  </NavLink>
+                </button>
+              ) : (
+                <button>
+                  <NavLink to="/logout">Logout</NavLink>
+                </button>
+              )}
             </li>
           </ul>
         </nav>

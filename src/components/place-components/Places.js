@@ -6,10 +6,10 @@ function Places() {
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
+    console.log(localStorage);
     axios
       .get("http://localhost:4000/places")
       .then((result) => {
-        console.log(result);
         setPlaces(result.data.places);
       })
       .then(console.log(places));
