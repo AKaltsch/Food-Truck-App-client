@@ -9,11 +9,17 @@ import NotFound from "./NotFound";
 
 import "../navbar.css";
 import PlaceForm from "./place-components/PlaceForm";
+import axios from "axios";
 
 function Navbar() {
   //state on not found page
   //useLocation is the only way to get state out of links
   const location = useLocation();
+
+  const logout = () => {
+    localStorage.clear();
+    console.log("Logged Out!!!");
+  };
   return (
     <div>
       <header>
@@ -43,7 +49,9 @@ function Navbar() {
                 </button>
               ) : (
                 <button>
-                  <NavLink to="/logout">Logout</NavLink>
+                  <NavLink to="/login" onClick={logout()}>
+                    Logout
+                  </NavLink>
                 </button>
               )}
             </li>
