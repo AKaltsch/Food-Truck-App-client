@@ -12,6 +12,8 @@ function PlaceForm({ setPlaces, places, setMarker, marker }) {
         title: title,
         imageUrl: imageUrl,
         artistName: artistName,
+        lat: marker.lat,
+        lng: marker.lng,
       })
       .then((result) => {
         result.redirect("/places");
