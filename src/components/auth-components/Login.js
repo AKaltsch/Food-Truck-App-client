@@ -10,8 +10,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const postLogin = () => {
-    axios
+  const postLogin = async () => {
+    const response = await axios
       .post("http://localhost:4000/login", {
         email: email,
         password: password,
