@@ -15,7 +15,7 @@ import PlaceForm from "./place-components/PlaceForm";
 
 const mapContainerStyle = {
   width: "100vw",
-  height: "90vh",
+  height: "60vh",
 };
 
 const center = {
@@ -33,7 +33,8 @@ function Map() {
   // put libraries in state to avoid performance warning (rerender)
   const [libraries] = useState(["places"]);
 
-  const [markers, setMarkers] = useState([]);
+  const [places, setPlaces] = useState([]);
+  const [marker, setMarker] = useState([]);
   const [selected, setSelected] = useState(null);
 
   const { isLoaded, loadError } = useJsApiLoader({
@@ -60,16 +61,26 @@ function Map() {
     setMap(null);
   }, []);
 
-  const onMapClick = useCallback((e) => {
-    setMarkers((marks) => [
-      ...marks,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
-  }, []);
+  // const onMapClick = useCallback((e) => {
+  //   setPlaces((marks) => [
+  //     ...marks,
+  //     {
+  //       lat: e.latLng.lat(),
+  //       lng: e.latLng.lng(),
+  //       time: new Date(),
+  //     },
+  //   ]);
+  // }, []);
+
+  const handleSetMarker = (e) => {
+    setMarker({
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+      dateUploaded: new Date().toLocaleDateString(),
+    });
+  };
+  console.log("Marker Lat-Lng", marker);
+  // console.log("Marker Lat-Lng", marker.lat, marker.lng);
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -95,13 +106,34 @@ function Map() {
         onLoad={onLoad}
         onUnmount={onUnmount}
         options={options}
-        onClick={onMapClick}
+        // onClick={onMapClick}
+        onClick={(e) => handleSetMarker(e)}
+        places={places}
+        selected={selected}
       >
-        {markers.map((marker) => (
+        {marker ? (
+          <Marker
+            // scale={1}
+            position={{
+              lat: parseFloat(marker.lat),
+              lng: parseFloat(marker.lng),
+            }}
+            animation={1}
+            draggable={true}
+            onDragEnd={handleSetMarker}
+          />
+        ) : (
+          ""
+        )}
+
+        {places.map((marker) => (
           <Marker
             key={marker.time.toISOString()}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            draggable={true}
+            position={{
+              lat: parseFloat(marker.lat),
+              lng: parseFloat(marker.lng),
+            }}
+            draggable={false}
             onClick={() => {
               setSelected(marker);
             }}
@@ -114,14 +146,20 @@ function Map() {
             position={{ lat: selected.lat, lng: selected.lng }}
             onCloseClick={() => setSelected(null)}
           >
-            {/* <div>
+            <div>
               <h2>testing infobox</h2>
               <p>{formatRelative(selected.time, new Date())}</p>
-            </div> */}
-            <PlaceForm />
+            </div>
           </InfoWindow>
         ) : null}
       </GoogleMap>
+      <PlaceForm
+        handleSetMarker={handleSetMarker}
+        places={places}
+        setPlaces={setPlaces}
+        setMarker={setMarker}
+        marker={marker}
+      />
     </div>
   );
 }

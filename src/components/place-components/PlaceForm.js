@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function PlaceForm() {
+function PlaceForm({ setPlaces, places, setMarker, marker }) {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [artistName, setArtistName] = useState("");
