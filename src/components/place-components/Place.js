@@ -1,7 +1,7 @@
 import React from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 
-function Place({ title, artistName }) {
+function Place({ title, artistName, imageUrl }) {
   //useParams will make a key with value of id and return an object with all of the custom parameters we defined in the route
 
   // this is how you grab objects out of the outlets context
@@ -11,6 +11,9 @@ function Place({ title, artistName }) {
     <div>
       <h1>{title}</h1>
       <h4>{artistName}</h4>
+      <div>
+        <img src={imageUrl} width="auto" height="150" />
+      </div>
     </div>
   );
 }

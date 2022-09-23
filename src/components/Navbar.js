@@ -5,6 +5,7 @@ import Login from "./auth-components/Login";
 import Signup from "./auth-components/Signup";
 import MyPlaces from "./auth-components/MyPlaces";
 import PlaceRoutes from "./place-components/PlaceRoutes";
+import Places from "./place-components/Places";
 import NotFound from "./NotFound";
 
 import "../navbar.css";
@@ -61,7 +62,8 @@ function Navbar() {
 
         {/* When an element is passed to a parent component, it is rendered on all the ckild components */}
         {/* A * has to be added to the path in order for the routes in the element to be recognized */}
-        <Route path="/places/*" element={<PlaceRoutes />} />
+        {/* <Route path="/places" element={<PlaceRoutes />} /> */}
+        <Route path="/places" element={<Places />} />
 
         <Route path="/myplaces" element={<MyPlaces />} />
 
