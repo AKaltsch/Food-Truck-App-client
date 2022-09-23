@@ -14,6 +14,7 @@ function PlaceForm({ setPlaces, places, setMarker, marker }) {
         artistName: artistName,
         lat: marker.lat,
         lng: marker.lng,
+        dateUploaded: marker.dateUploaded,
       })
       .then((result) => {
         result.redirect("/places");
@@ -23,7 +24,7 @@ function PlaceForm({ setPlaces, places, setMarker, marker }) {
   return (
     <div>
       <h1>PlaceForm</h1>
-      <form>
+      <form onSubmit={submitPlace}>
         <div className="form-control">
           <label>Title</label>
           <input
@@ -51,9 +52,7 @@ function PlaceForm({ setPlaces, places, setMarker, marker }) {
             onChange={(e) => setArtistName(e.target.value)}
           />
         </div>
-        <button type="submit" onClick={submitPlace}>
-          Submit
-        </button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

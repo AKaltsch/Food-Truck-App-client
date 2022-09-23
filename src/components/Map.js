@@ -36,6 +36,7 @@ function Map({ places, setPlaces }) {
   // const [places, setPlaces] = useState([]);
   const [marker, setMarker] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [newMarker, setNewMarker] = useState(false);
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -60,19 +61,9 @@ function Map({ places, setPlaces }) {
     setMap(null);
   }, []);
 
-  // const onMapClick = useCallback((e) => {
-  //   setPlaces((marks) => [
-  //     ...marks,
-  //     {
-  //       lat: e.latLng.lat(),
-  //       lng: e.latLng.lng(),
-  //       time: new Date(),
-  //     },
-  //   ]);
-  // }, []);
-
   const handleSetMarker = (e) => {
     setMarker({
+      new: setNewMarker(true),
       lat: e.latLng.lat(),
       lng: e.latLng.lng(),
       dateUploaded: new Date().toLocaleDateString(),
@@ -95,7 +86,6 @@ function Map({ places, setPlaces }) {
     <div>
       <Search panTo={panTo} />
       <Locate panTo={panTo} />
-
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
@@ -149,13 +139,20 @@ function Map({ places, setPlaces }) {
           </InfoWindow>
         ) : null}
       </GoogleMap>
-      <PlaceForm
-        handleSetMarker={handleSetMarker}
-        places={places}
-        setPlaces={setPlaces}
-        setMarker={setMarker}
-        marker={marker}
-      />
+
+      <br />
+
+      {newMarker ? (
+        <PlaceForm
+          handleSetMarker={handleSetMarker}
+          places={places}
+          setPlaces={setPlaces}
+          setMarker={setMarker}
+          marker={marker}
+        />
+      ) : (
+        <h3>Click to add new marker</h3>
+      )}
     </div>
   );
 }
