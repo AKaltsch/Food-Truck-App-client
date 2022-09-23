@@ -5,10 +5,21 @@ import Navbar from "./components/Navbar";
 
 function App() {
   //bottom comments go here
+  const [places, setPlaces] = useState([]);
+
+  useEffect(() => {
+    console.log(localStorage);
+    axios
+      .get("http://localhost:4000/places")
+      .then((result) => {
+        setPlaces(result.data.places);
+      })
+      .then(console.log(places));
+  }, []);
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar places={places} setPlaces={setPlaces} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
 function Place({ title, artistName, imageUrl }) {
   //useParams will make a key with value of id and return an object with all of the custom parameters we defined in the route

@@ -29,11 +29,11 @@ const options = {
 };
 
 ////////////////////// function start ///////////////////
-function Map() {
+function Map({ places, setPlaces }) {
   // put libraries in state to avoid performance warning (rerender)
   const [libraries] = useState(["places"]);
 
-  const [places, setPlaces] = useState([]);
+  // const [places, setPlaces] = useState([]);
   const [marker, setMarker] = useState([]);
   const [selected, setSelected] = useState(null);
 
@@ -53,7 +53,6 @@ function Map() {
 
   // //same as onLoad function above ---> Look into diffference btwn the 2!!!!!!!
   const onLoad = useCallback((map) => {
-    console.log("loaded");
     mapRef.current = map;
   }, []);
 
@@ -79,8 +78,6 @@ function Map() {
       dateUploaded: new Date().toLocaleDateString(),
     });
   };
-  console.log("Marker Lat-Lng", marker);
-  // console.log("Marker Lat-Lng", marker.lat, marker.lng);
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -128,7 +125,7 @@ function Map() {
 
         {places.map((marker) => (
           <Marker
-            key={marker.time.toISOString()}
+            key={marker._id}
             position={{
               lat: parseFloat(marker.lat),
               lng: parseFloat(marker.lng),
@@ -148,7 +145,6 @@ function Map() {
           >
             <div>
               <h2>testing infobox</h2>
-              <p>{formatRelative(selected.time, new Date())}</p>
             </div>
           </InfoWindow>
         ) : null}
