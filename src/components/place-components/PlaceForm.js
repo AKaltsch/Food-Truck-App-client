@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function PlaceForm({ setPlaces, places, setMarker, marker }) {
+function PlaceForm({ setPlaces, places, setMarker, marker, setNewMarker }) {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [artistName, setArtistName] = useState("");
@@ -53,6 +53,16 @@ function PlaceForm({ setPlaces, places, setMarker, marker }) {
           />
         </div>
         <button type="submit">Submit</button>
+        <br />
+        <button
+          style={{ backgroundColor: "red" }}
+          onClick={() => {
+            setNewMarker(false);
+            setMarker(null);
+          }}
+        >
+          Cancel
+        </button>
       </form>
     </div>
   );

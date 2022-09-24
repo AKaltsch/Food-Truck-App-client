@@ -22,7 +22,7 @@ function Navbar({ places, setPlaces }) {
   return (
     <div>
       <header>
-        <nav>
+        <nav className="navbar">
           <ul className="nav__links">
             <span role="img" aria-label="emoji">
               🚚

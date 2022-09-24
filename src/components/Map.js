@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import MapStyles from "./map-components/MapStyles";
 import { formatRelative } from "date-fns";
 
@@ -15,12 +15,12 @@ import PlaceForm from "./place-components/PlaceForm";
 
 const mapContainerStyle = {
   width: "100vw",
-  height: "60vh",
+  height: "70vh",
 };
 
 const center = {
-  lat: 38.538802,
-  lng: -122.469244,
+  lat: 37.7749,
+  lng: -122.4194,
 };
 
 const options = {
@@ -32,11 +32,10 @@ const options = {
 function Map({ places, setPlaces }) {
   // put libraries in state to avoid performance warning (rerender)
   const [libraries] = useState(["places"]);
-
-  // const [places, setPlaces] = useState([]);
   const [marker, setMarker] = useState([]);
   const [selected, setSelected] = useState(null);
   const [newMarker, setNewMarker] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState(null);
 
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -45,6 +44,15 @@ function Map({ places, setPlaces }) {
   const [map, setMap] = useState(null);
 
   const mapRef = useRef();
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCurrentLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
 
   // const onLoad = useCallback(function callback(map) {
   //   const bounds = new window.google.maps.LatLngBounds(center);
@@ -113,6 +121,16 @@ function Map({ places, setPlaces }) {
           ""
         )}
 
+        {currentLocation ? (
+          <Marker
+            position={{
+              lat: parseFloat(currentLocation.lat),
+              lng: parseFloat(currentLocation.lng),
+            }}
+            icon={"http://maps.google.com/mapfiles/kml/paddle/blu-blank.png"}
+          />
+        ) : null}
+
         {places.map((marker) => (
           <Marker
             key={marker._id}
@@ -149,6 +167,7 @@ function Map({ places, setPlaces }) {
           setPlaces={setPlaces}
           setMarker={setMarker}
           marker={marker}
+          setNewMarker={setNewMarker}
         />
       ) : (
         <h3>Click to add new marker</h3>
