@@ -16,18 +16,20 @@ function Places({ places }) {
   // }, []);
 
   return (
-    <div>
+    <div className="place-container">
       <h1>Places</h1>
-      {places.map((place) => {
-        return (
-          <Place
-            key={place._id}
-            title={place.title}
-            artistName={place.artistName}
-            imageUrl={place.imageUrl}
-          />
-        );
-      })}
+      <div className="flex-container">
+        {places.map((place) => {
+          return (
+            <Place
+              key={place._id}
+              title={place.title}
+              artistName={place.artistName}
+              imageUrl={place.imageUrl}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

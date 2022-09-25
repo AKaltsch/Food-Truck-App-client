@@ -8,7 +8,7 @@ function Place({ title, artistName, imageUrl }) {
   const obj = useOutletContext();
 
   return (
-    <div>
+    <div className="contribution">
       <h1>{title}</h1>
       <h4>{artistName}</h4>
       <div>
