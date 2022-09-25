@@ -47,11 +47,11 @@
   width: 250px;
   grid-gap: 10px;
   border: 1px solid white;
-  margin: 1vh;
+  margin: 3vh;
 }
 
 .flex-container {
-  justify-content: center;
+  justify-content: space-around;
   display: flex;
   max-width: 85vw;
   flex-wrap: wrap;
