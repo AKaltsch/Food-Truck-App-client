@@ -16,8 +16,9 @@ function Places({ places }) {
   // }, []);
 
   return (
-    <div className="place-container">
+    <div className="page-header">
       <h1>Places</h1>
+      <br />
       <div className="flex-container">
         {places.map((place) => {
           return (

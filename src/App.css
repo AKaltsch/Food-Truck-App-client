@@ -3,6 +3,7 @@
   align-items: center;
   color: red;
   background-color: black;
+  justify-content: center;
 }
 
 .App-logo {
@@ -41,12 +42,16 @@
 }
 
 .contribution {
+  color: red;
   display: grid;
   width: 250px;
   grid-gap: 10px;
+  border: 1px solid white;
+  margin: 1vh;
 }
 
 .flex-container {
+  justify-content: center;
   display: flex;
   max-width: 85vw;
   flex-wrap: wrap;
@@ -55,6 +60,6 @@
   margin-top: auto;
 }
 
-.place-container {
-  align-content: space-around;
+.page-header {
+  color: #00695c;
 }
