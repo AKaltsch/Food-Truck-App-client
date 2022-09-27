@@ -96,6 +96,7 @@ function Map({ places, setPlaces }) {
       <Locate panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
+        // center={currentLocation ? currentLocation : center}
         center={center}
         zoom={11}
         onLoad={onLoad}
