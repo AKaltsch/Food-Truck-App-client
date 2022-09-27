@@ -4,6 +4,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState();
+
   const [places, setPlaces] = useState([]);
 
   useEffect(() => {
@@ -14,6 +17,10 @@ function App() {
         setPlaces(result.data.places);
       })
       .then(console.log(places));
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/login");
   }, []);
 
   return (

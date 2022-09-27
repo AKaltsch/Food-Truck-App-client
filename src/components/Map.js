@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import MapStyles from "./map-components/MapStyles";
-import { formatRelative } from "date-fns";
+// import { formatRelative } from "date-fns";
 
 import Search from "./map-components/Search";
 import Locate from "./map-components/Locate";
@@ -41,7 +41,7 @@ function Map({ places, setPlaces }) {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const [map, setMap] = useState(null);
+  // const [map, setMap] = useState(null);
 
   const mapRef = useRef();
 
@@ -65,9 +65,9 @@ function Map({ places, setPlaces }) {
     mapRef.current = map;
   }, []);
 
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
+  // const onUnmount = useCallback(function callback(map) {
+  //   setMap(null);
+  // }, []);
 
   const handleSetMarker = (e) => {
     setMarker({
@@ -100,7 +100,7 @@ function Map({ places, setPlaces }) {
         center={center}
         zoom={11}
         onLoad={onLoad}
-        onUnmount={onUnmount}
+        // onUnmount={onUnmount}
         options={options}
         // onClick={onMapClick}
         onClick={(e) => handleSetMarker(e)}
@@ -156,6 +156,7 @@ function Map({ places, setPlaces }) {
               <h2>{selected.title}</h2>
               <img
                 src={selected.imageUrl}
+                alt="Unable to load"
                 style={{ height: "100px", width: "100px" }}
               />
               <p>{selected.dateUploaded}</p>

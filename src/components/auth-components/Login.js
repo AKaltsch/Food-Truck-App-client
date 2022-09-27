@@ -17,6 +17,7 @@ function Login() {
         password: password,
       })
       .then((response) => {
+        console.log(response.data);
         if (!response.data.auth) {
           console.log("failed to login!");
           setLoggedIn(false);
@@ -26,6 +27,7 @@ function Login() {
           setLoggedIn(true);
         }
       });
+    console.log(response);
   };
 
   const isAuthenticated = () => {

@@ -3,7 +3,7 @@ import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 import Login from "./auth-components/Login";
 import Signup from "./auth-components/Signup";
 import MyPlaces from "./auth-components/MyPlaces";
-import PlaceRoutes from "./place-components/PlaceRoutes";
+// import PlaceRoutes from "./place-components/PlaceRoutes";
 import Places from "./place-components/Places";
 import NotFound from "./NotFound";
 import Map from "./Map";
