@@ -5,30 +5,10 @@ import axios from "axios";
 
 import "../../form-styles.css";
 
-function Login() {
+function Login({ postLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-
-  const postLogin = async () => {
-    const response = await axios
-      .post("http://localhost:4000/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        console.log(response.data);
-        if (!response.data.auth) {
-          console.log("failed to login!");
-          setLoggedIn(false);
-        } else {
-          console.log("login successful!!");
-          localStorage.setItem("token", response.data.token);
-          setLoggedIn(true);
-        }
-      });
-    console.log(response);
-  };
 
   const isAuthenticated = () => {
     axios
@@ -40,6 +20,11 @@ function Login() {
       .then((res) => {
         console.log(res);
       });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    postLogin(email, password);
   };
 
   return (
@@ -66,14 +51,10 @@ function Login() {
           />
         </div>
       </form>
-      <button onClick={postLogin}>Submit</button>
+      <button onClick={handleLogin}>Submit</button>
       <br />
       <br />
       <NavLink to="/signup">Create an Account</NavLink>
-
-      {loggedIn && (
-        <button onClick={isAuthenticated}>Check Authentication</button>
-      )}
     </div>
   );
 }

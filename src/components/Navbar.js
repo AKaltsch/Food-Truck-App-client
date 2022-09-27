@@ -10,7 +10,7 @@ import Map from "./Map";
 
 import "../navbar.css";
 
-function Navbar({ places, setPlaces }) {
+function Navbar({ places, setPlaces, postLogin }) {
   //state on not found page
   //useLocation is the only way to get state out of links
   const location = useLocation();
@@ -47,7 +47,7 @@ function Navbar({ places, setPlaces }) {
                 </button>
               ) : (
                 <button>
-                  <NavLink to="/login" onClick={logout()}>
+                  <NavLink to="/login" onClick={logout}>
                     Logout
                   </NavLink>
                 </button>
@@ -70,7 +70,7 @@ function Navbar({ places, setPlaces }) {
 
         <Route path="/myplaces" element={<MyPlaces />} />
 
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login postLogin={postLogin} />} />
         <Route path="/signup" element={<Signup />} />
 
         <Route path="*" element={<NotFound />} />
