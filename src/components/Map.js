@@ -152,7 +152,12 @@ function Map({ places, setPlaces }) {
             onCloseClick={() => setSelected(null)}
           >
             <div>
-              <h2>testing infobox</h2>
+              <h2>{selected.title}</h2>
+              <img
+                src={selected.imageUrl}
+                style={{ height: "100px", width: "100px" }}
+              />
+              <p>{selected.dateUploaded}</p>
             </div>
           </InfoWindow>
         ) : null}

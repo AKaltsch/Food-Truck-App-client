@@ -52,17 +52,21 @@ function PlaceForm({ setPlaces, places, setMarker, marker, setNewMarker }) {
             onChange={(e) => setArtistName(e.target.value)}
           />
         </div>
-        <button type="submit">Submit</button>
-        <br />
-        <button
-          style={{ backgroundColor: "red" }}
-          onClick={() => {
-            setNewMarker(false);
-            setMarker(null);
-          }}
-        >
-          Cancel
-        </button>
+        <div>
+          <button className="button" type="submit">
+            Submit
+          </button>
+          <button
+            className="button"
+            style={{ backgroundColor: "red" }}
+            onClick={() => {
+              setNewMarker(false);
+              setMarker(null);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
