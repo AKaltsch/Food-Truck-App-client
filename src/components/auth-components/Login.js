@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import axios from "axios";
-
 import "../../form-styles.css";
 
 function Login({ postLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
 
-  const isAuthenticated = () => {
-    axios
-      .get("http://localhost:4000/isUserAuth", {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      });
-  };
+  // const isAuthenticated = () => {
+  //   axios
+  //     .get("http://localhost:4000/isUserAuth", {
+  //       headers: {
+  //         "x-access-token": localStorage.getItem("token"),
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
 
   const handleLogin = (e) => {
     e.preventDefault();

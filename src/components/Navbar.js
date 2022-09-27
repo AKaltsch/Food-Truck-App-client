@@ -10,15 +10,11 @@ import Map from "./Map";
 
 import "../navbar.css";
 
-function Navbar({ places, setPlaces, postLogin }) {
+function Navbar({ places, setPlaces, postLogin, handleLogout, postSignup }) {
   //state on not found page
   //useLocation is the only way to get state out of links
   const location = useLocation();
 
-  const logout = () => {
-    localStorage.clear();
-    console.log("Logged Out!!!");
-  };
   return (
     <div>
       <header>
@@ -47,7 +43,7 @@ function Navbar({ places, setPlaces, postLogin }) {
                 </button>
               ) : (
                 <button>
-                  <NavLink to="/login" onClick={logout}>
+                  <NavLink to="/login" onClick={handleLogout}>
                     Logout
                   </NavLink>
                 </button>
@@ -71,7 +67,7 @@ function Navbar({ places, setPlaces, postLogin }) {
         <Route path="/myplaces" element={<MyPlaces />} />
 
         <Route path="/login" element={<Login postLogin={postLogin} />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup postSignup={postSignup} />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -22,26 +22,6 @@ function App() {
     axios.get("http://localhost:4000/login");
   }, []);
 
-  // const postLogin = async () => {
-  //   const response = await axios
-  //     .post("http://localhost:4000/login", {
-  //       email: email,
-  //       password: password,
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       if (!response.data.auth) {
-  //         console.log("failed to login!");
-  //         setLoggedIn(false);
-  //       } else {
-  //         console.log("login successful!!");
-  //         localStorage.setItem("token", response.data.token);
-  //         setLoggedIn(true);
-  //       }
-  //     });
-  //   console.log(response);
-  // };
-
   const postLogin = (email, password) => {
     axios
       .post("http://localhost:4000/login", {
@@ -59,9 +39,34 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const postLogout = () => {
+    axios.post("http://localhost:4000/logout");
+  };
+
+  const postSignup = (email, password) => {
+    axios.post("http://localhost:4000/signup", {
+      email: email,
+      password: password,
+    });
+  };
+
+  const handleLogout = () => {
+    console.log("handling logout");
+    localStorage.clear();
+    setUser(null);
+    setLoggedIn(false);
+    postLogout();
+  };
+
   return (
     <div className="App">
-      <Navbar places={places} setPlaces={setPlaces} postLogin={postLogin} />
+      <Navbar
+        places={places}
+        setPlaces={setPlaces}
+        postLogin={postLogin}
+        handleLogout={handleLogout}
+        postSignup={postSignup}
+      />
     </div>
   );
 }

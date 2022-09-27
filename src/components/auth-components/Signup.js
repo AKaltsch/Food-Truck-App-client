@@ -4,21 +4,26 @@ import axios from "axios";
 
 import "../../form-styles.css";
 
-function Signup() {
+function Signup({ postSignup }) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitUser = () => {
-    axios
-      .post("http://localhost:4000/signup", {
-        email: email,
-        password: password,
-      })
-      .then((result) => {
-        navigate("/login");
-      });
+  // const submitUser = () => {
+  //   axios
+  //     .post("http://localhost:4000/signup", {
+  //       email: email,
+  //       password: password,
+  //     })
+  //     .then((result) => {
+  //       navigate("/login");
+  //     });
+  // };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    postSignup(email, password);
   };
 
   return (
@@ -54,7 +59,7 @@ function Signup() {
           />
         </div>
       </form>
-      <button onClick={submitUser}>Submit</button>
+      <button onClick={handleSignup}>Submit</button>
       <br />
     </div>
   );
