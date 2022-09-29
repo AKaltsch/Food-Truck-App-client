@@ -12,7 +12,8 @@ function App() {
 
   const navigate = useNavigate();
 
-  // axios.defaults.withCredentials = true;
+  /////NEED THIS HERE TO DELETE SESSIONS FROM THE DB!!!!!!!
+  axios.defaults.withCredentials = true;
 
   useEffect(() => {
     axios
@@ -59,14 +60,15 @@ function App() {
     console.log(res);
   };
 
-  const postLogin = (email, password) => {
-    axios
+  const postLogin = async (email, password) => {
+    await axios
       .post("http://localhost:4000/login", {
         email: email,
         password: password,
       })
       .then((response) => {
         if (response.data.auth) {
+          console.log(response.data);
           setUser(response.data.user);
           setLoggedIn(true);
           localStorage.setItem("token", response.data.token);
@@ -108,7 +110,6 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={getUser}>USER</button>
       <Navbar
         places={places}
         setPlaces={setPlaces}
