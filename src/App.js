@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
 
   const [places, setPlaces] = useState([]);
 
@@ -30,7 +30,7 @@ function App() {
         },
       })
       .then((res) => {
-        console.log(res);
+        console.log("Getting user: " + res);
       });
   }, []);
 
@@ -59,25 +59,17 @@ function App() {
 
   const postLogin = (email, password) => {
     axios
-      .post(
-        "http://localhost:4000/login",
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Accept: "application/json",
-        //   },
-        // },
-        {
-          email: email,
-          password: password,
-        }
-      )
+      .post("http://localhost:4000/login", {
+        email: email,
+        password: password,
+      })
       .then((response) => {
         console.log(response);
         if (response.data.auth) {
           setUser(response.data.user);
           setLoggedIn(true);
           localStorage.setItem("token", response.data.token);
+          console.log(user);
           console.log("logged in!!!");
         }
       })
@@ -96,9 +88,8 @@ function App() {
   };
 
   const handleLogout = () => {
-    console.log("handling logout");
     localStorage.clear();
-    setUser(null);
+    setUser({});
     setLoggedIn(false);
     postLogout();
   };
@@ -112,6 +103,7 @@ function App() {
         postLogin={postLogin}
         handleLogout={handleLogout}
         postSignup={postSignup}
+        user={user}
       />
     </div>
   );
