@@ -17,6 +17,7 @@ function Navbar({
   handleLogout,
   postSignup,
   user,
+  deletePlace,
 }) {
   //state on not found page
   //useLocation is the only way to get state out of links
@@ -73,7 +74,9 @@ function Navbar({
 
         <Route
           path="/myplaces"
-          element={<MyPlaces places={places} user={user} />}
+          element={
+            <MyPlaces places={places} user={user} deletePlace={deletePlace} />
+          }
         />
 
         <Route path="/login" element={<Login postLogin={postLogin} />} />

@@ -26,13 +26,13 @@ function App() {
 
   // useEffect(() => {
   //   axios
-  //     .get("http://localhost:4000/login", {
+  //     .get("http://localhost:4000/delete-place", {
   //       headers: {
   //         "x-access-token": localStorage.getItem("token"),
   //       },
   //     })
   //     .then((res) => {
-  //       console.log("Getting user: " + res);
+  //       console.log(JSON.stringify(res));
   //     });
   // }, []);
 
@@ -66,12 +66,10 @@ function App() {
         password: password,
       })
       .then((response) => {
-        console.log(response);
         if (response.data.auth) {
           setUser(response.data.user);
           setLoggedIn(true);
           localStorage.setItem("token", response.data.token);
-          console.log(user);
           console.log("logged in!!!");
         }
       })
@@ -80,7 +78,18 @@ function App() {
 
   const postLogout = () => {
     axios.post("http://localhost:4000/logout");
+    console.log("Logged out!!!");
     navigate("/login");
+  };
+
+  const deletePlace = (productId) => {
+    axios
+      .post("http://localhost:4000/delete-place", {
+        productId: productId,
+      })
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   const postSignup = (email, password) => {
@@ -107,6 +116,7 @@ function App() {
         handleLogout={handleLogout}
         postSignup={postSignup}
         user={user}
+        deletePlace={deletePlace}
       />
     </div>
   );
