@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -9,7 +10,9 @@ function App() {
 
   const [places, setPlaces] = useState([]);
 
-  axios.defaults.withCredentials = true;
+  const navigate = useNavigate();
+
+  // axios.defaults.withCredentials = true;
 
   useEffect(() => {
     axios
@@ -18,21 +21,20 @@ function App() {
       })
       .then((result) => {
         setPlaces(result.data.places);
-      })
-      .then(console.log(places));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4000/login", {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        console.log("Getting user: " + res);
       });
   }, []);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:4000/login", {
+  //       headers: {
+  //         "x-access-token": localStorage.getItem("token"),
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log("Getting user: " + res);
+  //     });
+  // }, []);
 
   // const isAuthenticated = () => {
   //   axios
@@ -78,6 +80,7 @@ function App() {
 
   const postLogout = () => {
     axios.post("http://localhost:4000/logout");
+    navigate("/login");
   };
 
   const postSignup = (email, password) => {

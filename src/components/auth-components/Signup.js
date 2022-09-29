@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import "../../form-styles.css";
 
@@ -24,6 +23,7 @@ function Signup({ postSignup }) {
   const handleSignup = (e) => {
     e.preventDefault();
     postSignup(email, password);
+    navigate("/login");
   };
 
   return (

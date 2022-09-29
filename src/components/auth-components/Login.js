@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import "../../form-styles.css";
 
 function Login({ postLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   // const isAuthenticated = () => {
   //   axios
@@ -19,9 +21,11 @@ function Login({ postLogin }) {
   //     });
   // };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = () => {
     postLogin(email, password);
+    setEmail("");
+    setPassword("");
+    navigate("/places");
   };
 
   return (
