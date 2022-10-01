@@ -50,14 +50,19 @@ function App() {
   // };
 
   const getUser = async () => {
-    const res = await axios
-      .get("http://localhost:4000/login", {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
+    await axios
+      .get(
+        "http://localhost:4000/login",
+        {
+          withCredentials: true,
+        }
+        // {
+        //   headers: {
+        //     "x-access-token": localStorage.getItem("token"),
+        //   },
+        // }
+      )
       .then((res) => console.log(res));
-    console.log(res);
   };
 
   const postLogin = async (email, password) => {
@@ -110,6 +115,7 @@ function App() {
 
   return (
     <div className="App">
+      <button onClick={getUser}>User</button>
       <Navbar
         places={places}
         setPlaces={setPlaces}
