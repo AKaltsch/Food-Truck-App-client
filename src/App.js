@@ -25,17 +25,17 @@ function App() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:4000/delete-place", {
-  //       headers: {
-  //         "x-access-token": localStorage.getItem("token"),
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(JSON.stringify(res));
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/login", {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        console.log(JSON.stringify(res));
+      });
+  }, []);
 
   // const isAuthenticated = () => {
   //   axios
@@ -49,21 +49,21 @@ function App() {
   //     });
   // };
 
-  const getUser = async () => {
-    await axios
-      .get(
-        "http://localhost:4000/login",
-        {
-          withCredentials: true,
-        }
-        // {
-        //   headers: {
-        //     "x-access-token": localStorage.getItem("token"),
-        //   },
-        // }
-      )
-      .then((res) => console.log(res));
-  };
+  // const getUser = async () => {
+  //   await axios
+  //     .get(
+  //       "http://localhost:4000/login",
+  //       {
+  //         withCredentials: true,
+  //       }
+  //       // {
+  //       //   headers: {
+  //       //     "x-access-token": localStorage.getItem("token"),
+  //       //   },
+  //       // }
+  //     )
+  //     .then((res) => console.log(res));
+  // };
 
   const postLogin = async (email, password) => {
     await axios
@@ -115,7 +115,7 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={getUser}>User</button>
+      {/* <button onClick={getUser}>User</button> */}
       <Navbar
         places={places}
         setPlaces={setPlaces}
