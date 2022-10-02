@@ -8,12 +8,15 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
 
+  const [data, setData] = useState([]);
+
   const [places, setPlaces] = useState([]);
 
   const navigate = useNavigate();
 
   /////NEED THIS HERE TO DELETE SESSIONS FROM THE DB!!!!!!!
   axios.defaults.withCredentials = true;
+  // axios.defaults.headers.common = true;
 
   useEffect(() => {
     axios
@@ -26,14 +29,16 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
       .get("http://localhost:4000/login", {
+        withCredentials: true,
         headers: {
-          "x-access-token": localStorage.getItem("token"),
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        console.log(JSON.stringify(res));
+        console.log(res);
       });
   }, []);
 
