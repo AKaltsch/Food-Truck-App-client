@@ -33,6 +33,7 @@ function App() {
     axios
       .get("http://localhost:4000/login", {
         withCredentials: true,
+        //Token being received as null on the backend
         headers: {
           Authorization: `Bearer ${token}`,
         },
