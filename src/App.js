@@ -14,7 +14,7 @@ function App() {
 
   const navigate = useNavigate();
 
-  /////NEED THIS HERE TO DELETE SESSIONS FROM THE DB!!!!!!!
+  /////NEED THIS HERE TO DELETE SESSIONS FROM THE DB!!!!!!!//
   axios.defaults.withCredentials = true;
   // axios.defaults.headers.common = true;
 
